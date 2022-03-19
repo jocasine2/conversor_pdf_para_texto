@@ -1,0 +1,54 @@
+version: "3.7"
+services:
+  app:
+    build:
+      args:
+        user: joaquim
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: conversor-de-arquivos
+    container_name: conversor-de-arquivos-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - conversor-de-arquivos
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    container_name: conversor-de-arquivos-db
+    restart: unless-stopped
+    environment:
+        MYSQL_ALLOW_EMPTY_PASSWORD: 1
+        MYSQL_USER: ludmais
+        MYSQL_ROOT_PASSWORD: 123456
+        MYSQL_PASSWORD: 123456
+        MYSQL_DATABASE: conversor-de-arquivos
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - conversor-de-arquivos
+
+  nginx:
+    image: nginx:alpine
+    container_name: conversor-de-arquivos-nginx
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    networks:
+      - conversor-de-arquivos
+    depends_on:
+      - app
+
+networks:
+  conversor-de-arquivos:
+    driver: bridge
