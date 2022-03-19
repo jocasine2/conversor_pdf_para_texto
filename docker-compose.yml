@@ -24,7 +24,7 @@ services:
     restart: unless-stopped
     environment:
         MYSQL_ALLOW_EMPTY_PASSWORD: 1
-        MYSQL_USER: ludmais
+        MYSQL_USER: joaquim
         MYSQL_ROOT_PASSWORD: 123456
         MYSQL_PASSWORD: 123456
         MYSQL_DATABASE: conversor-de-arquivos
