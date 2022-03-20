@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\DogController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +20,6 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::apiResource('conversor','App\Http\Controllers\api\DogController');
+// Route::apiResource('conversor','App\Http\Controllers\api\DogController');
+Route::get('conversor', [DogController::class, 'index'])->name('conversor.index');
+Route::post('conversor/pdftotext', [DogController::class, 'pdftotext'])->name('conversor.pdftotext');
