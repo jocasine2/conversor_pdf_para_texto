@@ -22,5 +22,4 @@ use App\Http\Controllers\api\ConvertController;
 //     return $request->user();
 // });
 
-// Route::apiResource('conversor','App\Http\Controllers\api\DogController');
-Route::post('conversor/pdftotext', [ConvertController::class, 'pdftotext'])->name('conversor.pdftotext');
+Route::get('conversor/pdftotext', [ConvertController::class, 'pdftotext'])->name('conversor.pdftotext');
