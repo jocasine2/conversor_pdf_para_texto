@@ -15,25 +15,6 @@ services:
       - ./:/var/www
     networks:
       - conversor-de-arquivos
-    depends_on:
-      - db
-
-  db:
-    image: mysql:5.7
-    container_name: conversor-de-arquivos-db
-    restart: unless-stopped
-    environment:
-        MYSQL_ALLOW_EMPTY_PASSWORD: 1
-        MYSQL_USER: joaquim
-        MYSQL_ROOT_PASSWORD: 123456
-        MYSQL_PASSWORD: 123456
-        MYSQL_DATABASE: conversor-de-arquivos
-    ports:
-      - "3306:3306"
-    volumes:
-      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
-    networks:
-      - conversor-de-arquivos
 
   nginx:
     image: nginx:alpine
