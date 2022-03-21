@@ -2,7 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\api\DogController;
+use App\Http\Controllers\api\ConvertController;
 
 
 /*
@@ -21,5 +23,4 @@ use App\Http\Controllers\api\DogController;
 // });
 
 // Route::apiResource('conversor','App\Http\Controllers\api\DogController');
-Route::get('conversor', [DogController::class, 'index'])->name('conversor.index');
-Route::post('conversor/pdftotext', [DogController::class, 'pdftotext'])->name('conversor.pdftotext');
+Route::post('conversor/pdftotext', [ConvertController::class, 'pdftotext'])->name('conversor.pdftotext');
