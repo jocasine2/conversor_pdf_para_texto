@@ -23,3 +23,4 @@ use App\Http\Controllers\api\ConvertController;
 // });
 
 Route::get('conversor/pdftotext', [ConvertController::class, 'pdftotext'])->name('conversor.pdftotext');
+Route::post('conversor/pdftotext', [ConvertController::class, 'pdftotext'])->name('conversor.pdftotext');
